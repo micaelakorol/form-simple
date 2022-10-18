@@ -1,12 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import useForm from '../hooks/useForm'
 import '../css/form.css'
-import {styles} from '../componentes/styles'
-import { initialForm } from './initialForm' //si hay problemas, copiar contenido aca como estaba.
+import FunctionForm from './functions/FunctionForm'
 
-
-const validationsForm = (form) => {
+export const validationsForm = (form) => {
     let errors = {}; 
      let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
         let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
@@ -41,33 +38,11 @@ return errors;
 
 //onBlur: Se realiza la validación al perder el foco del input:
 const Form = () => {
-    const {form,errors,handleBlur,handleChange,handleSubmit} = useForm(initialForm,validationsForm)
+   // const {form,errors,handleBlur,handleChange,handleSubmit} = useForm(initialForm,validationsForm)
   return (
        <>
     <div className='contenedor-form'>
-    <form onSubmit={handleSubmit} className='form'>
-        <img src={require('../img/img.jpg')} alt="" className='imagen_logo'/>
-        <input type="text" name='name' placeholder='Nombre'autoComplete='off' onChange={handleChange}
-    onBlur={handleBlur} value={form.name} required
-    />
-        {errors.name && <p style={styles}>*{errors.name}</p>}
-
-    <input type="email" name='email' placeholder='name@example.com'  autoComplete='off' onChange={handleChange} onBlur={handleBlur} value={form.email} required
-/>
-        {errors.email && <p style={styles}>*{errors.email}</p>}
-
-    <input type="text" name='subject' placeholder='Asunto' autoComplete='off' onChange={handleChange}
-onBlur={handleBlur} value={form.subject} required
-/> 
-        {errors.subject && <p style={styles}>*{errors.subject}</p>}
-
-    <textarea name="comments" cols="50" rows="5" placeholder='Escribe tus comentarios' onChange={handleChange} onBlur={handleBlur} value={form.comments} required></textarea>
-        {errors.comments && <p style={styles}>{errors.comments}</p>}
-        <b>Tú opinión nos interesa!</b>
-    
-
-    <button className='boton' type='submit'> Enviar </button>
-</form>
+ <FunctionForm/>
 </div>
 </>
   )
