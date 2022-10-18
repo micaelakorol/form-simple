@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import "../css/form.css";
+import "../../css/form.css";
 
 export const validationsForm = (form) => {
   let errors = {};

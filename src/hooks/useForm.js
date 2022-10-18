@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { app } from "../componentes/firebase/config";
 
 export default function useForm(initialForm, validateForm) {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
+
+  const db = getFirestore(app);
 
   //obtengo el valor del input
   const handleChange = (e) => {
@@ -19,10 +23,18 @@ export default function useForm(initialForm, validateForm) {
     setErrors(validateForm(form));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors(validateForm(form));
-    setForm(initialForm);
+    try {
+      await addDoc(collection(db, "users"), {
+        ...form,
+      });
+      setForm(initialForm);
+      return alert("Formulario enviado!");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return {
     form,

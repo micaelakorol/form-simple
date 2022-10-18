@@ -1,18 +1,18 @@
-import React from "react";
-import useForm from "../../hooks/useForm";
-import { validationsForm } from "../FormValidate";
-import { initialForm } from "../data/initialForm";
-import { styles } from "../styles";
-import "../../css/form.css";
 import img from "../../img/img.jpg";
+import useForm from "../../hooks/useForm";
+import { initialForm } from "../data/initialForm";
+import { validationsForm } from "./FormValidate";
+import { styles } from "../styles";
 
-const FunctionForm = () => {
+const Form = () => {
   const { form, errors, handleBlur, handleChange, handleSubmit } = useForm(
     initialForm,
     validationsForm
   );
-  return (
-    <form onSubmit={handleSubmit} className="form">
+    return (
+      <>
+        <div className="contenedor-form">
+        <form onSubmit={handleSubmit} className="form">
       <img src={img} alt="" className="imagen_logo" />
       <input
         type="text"
@@ -69,6 +69,9 @@ const FunctionForm = () => {
       </button>
     </form>
   );
-};
-
-export default FunctionForm;
+        </div>
+      </>
+    );
+  };
+  
+  export default Form;
