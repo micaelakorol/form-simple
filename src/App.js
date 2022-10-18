@@ -1,7 +1,7 @@
 import React from 'react'
-import Form from './componentes/Form'
 import './css/App.css'
 import { Helmet } from 'react-helmet'
+import Form from './componentes/Form'
 const App = () => {
   return (
     <div>
